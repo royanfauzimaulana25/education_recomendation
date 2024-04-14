@@ -1,101 +1,119 @@
 import streamlit as st
 import pandas as pd
 import joblib
-from data_preprocessing import data_preprocessing, encoder_Credit_Mix, encoder_Payment_Behaviour, encoder_Payment_of_Min_Amount
-from prediction import prediction
+# from data_preprocessing import data_preprocessing, encoder_Credit_Mix, encoder_Payment_Behaviour, encoder_Payment_of_Min_Amount
+# from prediction import prediction
 
-col1, col2 = st.columns([1, 5])
+col1, col2 = st.columns([2, 5])
 with col1:
-    st.image("https://github.com/dicodingacademy/assets/raw/main/logo.png", width=130)
+    st.image("https://raw.githubusercontent.com/royanfauzimaulana25/education_recomendation/main/asset/logo.jpg", width=200)
 with col2:
-    st.header('Credit Scoring App (Prototype)')
+    st.header('Dropout Student Prediction App (Prototype)')
 
 data = pd.DataFrame()
  
-col1, col2, col3 = st.columns(3)
+col1, col2, col3 ,col4= st.columns(4)
  
 with col1:
-    Credit_Mix = st.selectbox(label='Credit_Mix', options=encoder_Credit_Mix.classes_, index=1)
-    data["Credit_Mix"] = [Credit_Mix]
- 
+    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
+    Marital_status = st.selectbox(label='Marital_status', options=['single', 'married','widower', 'divorced', 'facto union', 'legally separated'], placeholder = 'Choose an option', index=None)
+    data["Marital_status"] = [Marital_status]
+
 with col2:
-    Payment_of_Min_Amount = st.selectbox(label='Payment_of_Min_Amount', options=encoder_Payment_of_Min_Amount.classes_, index=1)
-    data["Payment_of_Min_Amount"] = [Payment_of_Min_Amount]
+    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
+    Daytime_evening_attendance = st.selectbox(label='Daytime Attendance', options=['Yes', 'No'], placeholder = 'Choose an option', index=None)
+    data["Daytime_evening_attendance"] = [Daytime_evening_attendance]
  
 with col3:
-    Payment_Behaviour = st.selectbox(label='Payment_Behaviour', options=encoder_Payment_Behaviour.classes_, index=5)
-    data["Payment_Behaviour"] = Payment_Behaviour
- 
-col1, col2, col3, col4 = st.columns(4)
- 
-with col1:
-       
-    Age = int(st.number_input(label='Age', value=23))
-    data["Age"] = Age
- 
-with col2:
-    Num_Bank_Accounts = int(st.number_input(label='Num_Bank_Accounts', value=3))
-    data["Num_Bank_Accounts"] = Num_Bank_Accounts
- 
-with col3:
-    Num_Credit_Card = int(st.number_input(label='Num_Credit_Card', value=4))
-    data["Num_Credit_Card"] = Num_Credit_Card
+    Previous_qualification_grade = float(st.number_input(label='Previous Qualification Grade'))
+    data["Previous_qualification_grade"] = [Previous_qualification_grade]
  
 with col4:
-    Interest_Rate = float(st.number_input(label='Interest_Rate', value=3))
-    data["Interest_Rate"] = Interest_Rate
- 
- 
+    Admission_grade = float(st.number_input(label='Admission Grade'))
+    data["Admission_grade"] = Admission_grade
+
 col1, col2, col3, col4 = st.columns(4)
- 
+
 with col1:
-    Num_of_Loan = int(st.number_input(label='Num_of_Loan', value=4))
-    data["Num_of_Loan"] = Num_of_Loan
+    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
+    Displaced = st.selectbox(label='Displaced', options=['Yes', 'No'], placeholder = 'Choose an option', index=None)
+    data["Displaced"] = [Displaced]
  
 with col2:
-    # st.header("Kolom 1")
-    Delay_from_due_date = int(st.number_input(label='Delay_from_due_date', value=3))
-    data["Delay_from_due_date"] = Delay_from_due_date
+    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
+    Debtor = st.selectbox(label='Debtor', options=['Yes', 'No'], placeholder = 'Choose an option', index=None)
+    data["Debtor"] = [Debtor]
  
 with col3:
-    Num_of_Delayed_Payment = int(st.number_input(label='Num_of_Delayed_Payment', value=7))
-    data["Num_of_Delayed_Payment"] = Num_of_Delayed_Payment
+    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
+    Tuition_fees_up_to_date = st.selectbox(label='Tuition_fees_up_to_date', options=['Yes', 'No'], placeholder = 'Choose an option', index=None)
+    data["Tuition_fees_up_to_date"] = [Tuition_fees_up_to_date]
  
 with col4:
-    Changed_Credit_Limit = float(st.number_input(label='Changed_Credit_Limit', value=11.27))
-    data["Changed_Credit_Limit"] = Changed_Credit_Limit
- 
-col1, col2, col3, col4 = st.columns(4)
- 
-with col1:
-    Num_Credit_Inquiries = float(st.number_input(label='Num_Credit_Inquiries', value=5))
-    data["Num_Credit_Inquiries"] = Num_Credit_Inquiries
- 
-with col2:
-    Outstanding_Debt = float(st.number_input(label='Outstanding_Debt', value=809.98))
-    data["Outstanding_Debt"] = Outstanding_Debt
- 
-with col3:
-    Monthly_Inhand_Salary = float(st.number_input(label='Monthly_Inhand_Salary', value=1824.8))
-    data["Monthly_Inhand_Salary"] = Monthly_Inhand_Salary
- 
-with col4:
-    Monthly_Balance = float(st.number_input(label='Monthly_Balance', value=186.26))
-    data["Monthly_Balance"] = Monthly_Balance
+    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
+    Gender = st.selectbox(label='Gender', options=['Yes', 'No'], placeholder = 'Choose an option', index=None)
+    data["Gender"] = [Gender]
  
 col1, col2, col3 = st.columns(3)
  
 with col1:
-    Amount_invested_monthly = float(st.number_input(label='Amount_invested_monthly', value=236.64))
-    data["Amount_invested_monthly"] = Amount_invested_monthly
+    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
+    Scholarship_holder = st.selectbox(label='Scholarship_holder', options=['Yes', 'No'], placeholder = 'Choose an option', index=None)
+    data["Scholarship_holder"] = [Scholarship_holder]
  
 with col2:
-    Total_EMI_per_month = float(st.number_input(label='Total_EMI_per_month', value=49.5))
-    data["Total_EMI_per_month"] = Total_EMI_per_month
+    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
+    Age_at_enrollment = st.selectbox(label='Age_at_enrollment', options=['Yes', 'No'], placeholder = 'Choose an option', index=None)
+    data["Age_at_enrollment"] = [Age_at_enrollment]
  
 with col3:
-    Credit_History_Age = float(st.number_input(label='Credit_History_Age', value=216))
-    data["Credit_History_Age"] = Credit_History_Age
+    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
+    International = st.selectbox(label='International', options=['Yes', 'No'], placeholder = 'Choose an option', index=None)
+    data["International"] = [International]
+
+
+
+col1, col2 = st.columns(2)
+with col1:       
+    Curricular_units_1st_sem_credited = int(st.number_input(label='Curricular_units_1st_sem_credited', placeholder = 'Input Number'))
+    data["Curricular_units_1st_sem_credited"] = Curricular_units_1st_sem_credited
+    
+    Curricular_units_1st_sem_enrolled = int(st.number_input(label='Curricular_units_1st_sem_enrolled'))
+    data["Curricular_units_1st_sem_enrolled"] = Curricular_units_1st_sem_enrolled
+    
+    Curricular_units_1st_sem_evaluations = int(st.number_input(label='Curricular_units_1st_sem_evaluations'))
+    data["Curricular_units_1st_sem_evaluations"] = Curricular_units_1st_sem_evaluations
+    
+    Curricular_units_1st_sem_approved = int(st.number_input(label='Curricular_units_1st_sem_approved'))
+    data["Curricular_units_1st_sem_approved"] = Curricular_units_1st_sem_approved
+    
+    Curricular_units_1st_sem_grade = int(st.number_input(label='Curricular_units_1st_sem_grade'))
+    data["Curricular_units_1st_sem_grade"] = Curricular_units_1st_sem_grade
+    
+    Curricular_units_1st_sem_without_evaluations = int(st.number_input(label='Curricular_units_1st_sem_without_evaluations'))
+    data["Curricular_units_1st_sem_without_evaluations"] = Curricular_units_1st_sem_without_evaluations
+ 
+with col2:       
+    Curricular_units_2nd_sem_credited = int(st.number_input(label='Curricular_units_2nd_sem_credited'))
+    data["Curricular_units_2nd_sem_credited"] = Curricular_units_2nd_sem_credited
+    
+    Curricular_units_2nd_sem_enrolled = int(st.number_input(label='Curricular_units_2nd_sem_enrolled'))
+    data["Curricular_units_2nd_sem_enrolled"] = Curricular_units_2nd_sem_enrolled
+    
+    Curricular_units_2nd_sem_evaluations = int(st.number_input(label='Curricular_units_2nd_sem_evaluations'))
+    data["Curricular_units_2nd_sem_evaluations"] = Curricular_units_2nd_sem_evaluations
+    
+    Curricular_units_2nd_sem_approved = int(st.number_input(label='Curricular_units_2nd_sem_approved'))
+    data["Curricular_units_2nd_sem_approved"] = Curricular_units_2nd_sem_approved
+    
+    Curricular_units_2nd_sem_grade = int(st.number_input(label='Curricular_units_2nd_sem_grade'))
+    data["Curricular_units_2nd_sem_grade"] = Curricular_units_2nd_sem_grade
+    
+    Curricular_units_2nd_sem_without_evaluations = int(st.number_input(label='Curricular_units_2nd_sem_without_evaluations'))
+    data["Curricular_units_2nd_sem_without_evaluations"] = Curricular_units_2nd_sem_without_evaluations
+ 
+GDP = int(st.number_input(label='GDP'))
+data["GDP"] = GDP
 
 with st.expander("View the Raw Data"):
     st.dataframe(data=data, width=800, height=10)
