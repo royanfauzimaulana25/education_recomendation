@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
 import joblib
-# from data_preprocessing import data_preprocessing, encoder_Credit_Mix, encoder_Payment_Behaviour, encoder_Payment_of_Min_Amount
-# from prediction import prediction
+from data_preprocessing import *
+from prediction import prediction
 
 col1, col2 = st.columns([2, 5])
 with col1:
@@ -15,13 +15,11 @@ data = pd.DataFrame()
 col1, col2, col3 ,col4= st.columns(4)
  
 with col1:
-    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
-    Marital_status = st.selectbox(label='Marital_status', options=['single', 'married','widower', 'divorced', 'facto union', 'legally separated'], placeholder = 'Choose an option', index=None)
+    Marital_status = st.selectbox(label='Marital Status', options=encoder_Marital_status.classes_, placeholder = 'Choose an option', index=None)
     data["Marital_status"] = [Marital_status]
 
 with col2:
-    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
-    Daytime_evening_attendance = st.selectbox(label='Daytime Attendance', options=['Yes', 'No'], placeholder = 'Choose an option', index=None)
+    Daytime_evening_attendance = st.selectbox(label='Daytime Attendance', options=encoder_Daytime_evening_attendance.classes_, placeholder = 'Choose an option', index=None)
     data["Daytime_evening_attendance"] = [Daytime_evening_attendance]
  
 with col3:
@@ -35,41 +33,38 @@ with col4:
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
-    Displaced = st.selectbox(label='Displaced', options=['Yes', 'No'], placeholder = 'Choose an option', index=None)
+    Displaced = st.selectbox(label='Displaced', options=encoder_Displaced.classes_, placeholder = 'Choose an option', index=None)
     data["Displaced"] = [Displaced]
  
 with col2:
-    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
-    Debtor = st.selectbox(label='Debtor', options=['Yes', 'No'], placeholder = 'Choose an option', index=None)
+    Debtor = st.selectbox(label='Debtor', options=encoder_Debtor.classes_, placeholder = 'Choose an option', index=None)
     data["Debtor"] = [Debtor]
  
 with col3:
-    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
-    Tuition_fees_up_to_date = st.selectbox(label='Tuition_fees_up_to_date', options=['Yes', 'No'], placeholder = 'Choose an option', index=None)
+    Tuition_fees_up_to_date = st.selectbox(label='Tuition Fees Up to date', options=encoder_Tuition_fees_up_to_date.classes_, placeholder = 'Choose an option', index=None)
     data["Tuition_fees_up_to_date"] = [Tuition_fees_up_to_date]
  
 with col4:
-    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
-    Gender = st.selectbox(label='Gender', options=['Yes', 'No'], placeholder = 'Choose an option', index=None)
+    Gender = st.selectbox(label='Gender', options=encoder_Gender.classes_, placeholder = 'Choose an option', index=None)
     data["Gender"] = [Gender]
  
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
  
 with col1:
-    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
-    Scholarship_holder = st.selectbox(label='Scholarship_holder', options=['Yes', 'No'], placeholder = 'Choose an option', index=None)
+    Scholarship_holder = st.selectbox(label='Scholarship Holder', options=encoder_Scholarship_holder.classes_, placeholder = 'Choose an option', index=None)
     data["Scholarship_holder"] = [Scholarship_holder]
  
 with col2:
-    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
-    Age_at_enrollment = st.selectbox(label='Age_at_enrollment', options=['Yes', 'No'], placeholder = 'Choose an option', index=None)
+    Age_at_enrollment = int(st.number_input(label='Age at Enrollment'))
     data["Age_at_enrollment"] = [Age_at_enrollment]
  
 with col3:
-    # Daytime_evening_attendance = st.selectbox(label='Daytime_evening_attendance', options=encoder_Daytime_evening_attendance.joblib.classes_, index=1)
-    International = st.selectbox(label='International', options=['Yes', 'No'], placeholder = 'Choose an option', index=None)
+    International = st.selectbox(label='International', options=encoder_International.classes_, placeholder = 'Choose an option', index=None)
     data["International"] = [International]
+
+with col4:
+    Educational_special_needs = st.selectbox(label='Educational Special Needs', options=encoder_Educational_special_needs.classes_, placeholder = 'Choose an option', index=None)
+    data["Educational_special_needs"] = [Educational_special_needs]
 
 
 
@@ -116,7 +111,7 @@ GDP = int(st.number_input(label='GDP'))
 data["GDP"] = GDP
 
 with st.expander("View the Raw Data"):
-    st.dataframe(data=data, width=800, height=10)
+    st.dataframe(data=data, width=None, height=10)
 
 if st.button('Predict'):
     new_data = data_preprocessing(data=data)
