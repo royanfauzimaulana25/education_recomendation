@@ -85,6 +85,9 @@ https://education-dropout-prediction.streamlit.app/
 2. Masukan fitur pada widget inputan
 3. Klik tombol Predict untuk mendapatkan hasil prediksi
 ```
+![Deployment Streamlit](https://raw.githubusercontent.com/royanfauzimaulana25/education_recomendation/main/royanfauzimaulana-deployment.png) 
+Gambar 3. Deployment sistem machine learning
+
 
 ## Conclusion
 Berdasarkan hasil analisa yang telah dilakukan, didapatkan informasi bahwa siswa yang mengalukan dropout didominasi berasal dari status pernikahan single dengan umur dibawah kisaran 30 tahun. Dimana siswa tersebut mengambil kelas reguler (siang) dan memiliki rerata performance grade / nilai di akhir semester satu dan dua relatif lebih kecil dibandingkan siswa yang telah lulus ataupun masih belajar (enrolled) yaitu dibawah kisaran 7. Selain itu jumlah siswa dropout sejumlah 47 % berasal dari siswa pindahan. Sehingga dapat diambil kesimpulan bahwa fitur `Displaced` dan `Student Performance Grade per Semester` menjadi tolak ukur utama pada siswa yang mungkin mengalami dropout. 
