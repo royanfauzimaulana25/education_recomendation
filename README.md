@@ -46,7 +46,7 @@ pip install -r requirement.txt
 ## Business Dashboard
 Dashboard yang dibuat terdiri atas visualisasi data dalam bentuk aktual jumlah data dan grafik. Adapun penjelasan tiap fitur dashboard yang dibuat sebagai berikut :
 1. Fitur Jumlah data aktual yang memberikan nilai yang ada pada dataset.
-    ![Data Aktual](asset/image.png)
+    ![Data Aktual](https://raw.githubusercontent.com/royanfauzimaulana25/education_recomendation/main/asset/image.png)
     Gambar 1. Fitur Data Aktual
 
 Adapun fitur tersebut berfungsi untuk memonitor nilai aktual data saat ini yang terdiri atas :
@@ -57,7 +57,7 @@ Adapun fitur tersebut berfungsi untuk memonitor nilai aktual data saat ini yang 
 - Rata rata umur siswa saat mendaftar
 
 2. Grafik data bagi siswa yang mengalami droput berfungsi sebagai memonitor pembanding dan komposisi data yang terdiri atas :
-![Grafik](asset/image-1.png)
+![Grafik](https://raw.githubusercontent.com/royanfauzimaulana25/education_recomendation/main/asset/image-1.png)
 Gambar 2. Grafik data siswa
 
 - Grafik pie chart Total Student by status mendeskripsikan komposisi jumlah siswa berdasarkan status nya. 
